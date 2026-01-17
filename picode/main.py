@@ -70,7 +70,13 @@ def loop():
 
         print("{:.1f}%".format(level_pct))
 
-        requests.post(f"http://{config.server_ip}:5000/devices/update?uuid={config.uuid}&value={level_pct}")
+        while True:
+            try:
+                requests.post(f"http://{config.server_ip}:5000/devices/update?uuid={config.uuid}&value={level_pct}")
+                break
+            except OSError:
+                pass # try again
+            time.sleep(0.5)
         if level_pct > LOUDNESS_THRESHOLD:
             print("Too loud!")
             LED.toggle()
