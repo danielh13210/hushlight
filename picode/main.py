@@ -8,6 +8,7 @@ import machine
 import rp2
 import sys
 import config
+import urequests as requests
 
 MIC_ADC = ADC(Pin(26))
 LED = machine.Pin(22, machine.Pin.OUT)
@@ -69,6 +70,7 @@ def loop():
 
         print("{:.1f}%".format(level_pct))
 
+        requests.post(f"http://{config.server_ip}:5000/update?uuid={config.uuid}&value={level_pct}")
         if level_pct > LOUDNESS_THRESHOLD:
             print("Too loud!")
             LED.toggle()
