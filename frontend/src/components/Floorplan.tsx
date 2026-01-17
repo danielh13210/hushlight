@@ -1,12 +1,13 @@
 import Lamp from "./Lamp";
 import positions from "../data/position.json";
 import { useMemo } from "react";
+import allLevels from "../data/LevelList.tsx"
 
 type Position = {
   id: string;
   x: string;
   y: string;
-  level: 1 | 2;
+  level: typeof allLevels[number];
 };
 
 function Floorplan(props: any) {
