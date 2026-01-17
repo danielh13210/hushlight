@@ -2,7 +2,6 @@ import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import Sidebar from "./components/Sidebar";
 import Floorplan from "./components/Floorplan";
-import lamps from "./data/test.json";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import GridLayout from "./layouts/GridLayout";
@@ -29,6 +28,8 @@ function App() {
     };
 
     fetchLamps();
+    const interval = setInterval(fetchLamps, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
