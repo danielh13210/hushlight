@@ -2,11 +2,13 @@ from flask import Flask, jsonify, request
 import time
 import pickle
 import os, shutil
+from flask_cors import CORS
 
 # if a room does not respond in 2 minutes, mark as inactive
 timeout=120 #2 minutes
 
 app=Flask("Noise meter API")
+CORS(app)
 devices={}
 fpath=os.path.expanduser("~/.quackers/noisemeter/save_file.pkl")
 os.makedirs(os.path.dirname(fpath),exist_ok=True)
