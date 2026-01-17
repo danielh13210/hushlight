@@ -1,14 +1,6 @@
 {
-  "A1": {
-    "active": true,
-    "label": "A1",
-    "last_update": 1768660966,
-    "value": 50.161508
-  },
-  "A2": {
-    "label": "A2",
-    "active": true,
-    "last_update": 1768657973,
-    "value": 58.87792
-  }
+  "A1": { "active": true, "label": "A1", "value": 18, "last_update": 1768660966, "level": 1, "x": "22%", "y": "35%" },
+  "A2": { "active": true, "label": "A2", "value": 52, "last_update": 1768657973, "level": 1, "x": "72%", "y": "35%" },
+  "A3": { "active": true, "label": "A3", "value": 28, "last_update": 1768660000, "level": 2, "x": "30%", "y": "55%" },
+  "A4": { "active": true, "label": "A4", "value": 78, "last_update": 1768660001, "level": 2, "x": "78%", "y": "62%" }
 }

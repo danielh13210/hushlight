@@ -4,7 +4,7 @@ function Floorplan(props: any) {
   const handleMove = (label: string, x: string, y: string) => {
     props.setLamps((prev: any) => ({
       ...prev,
-      [label]: { ...prev[label], x, y },
+      [label]: { ...(prev?.[label] ?? { label }), x, y },
     }));
   };
 
@@ -13,7 +13,9 @@ function Floorplan(props: any) {
       <div className="flex items-center justify-between mb-4">
         <div>
           <div className="text-white text-lg font-semibold">Floorplan</div>
-          <div className="text-white/60 text-xs">Drag pins to set lamp positions</div>
+          <div className="text-white/60 text-xs">
+            Drag pins to set lamp positions • Level {props.level}
+          </div>
         </div>
 
         <div className="flex items-center gap-2 text-xs">
@@ -32,18 +34,19 @@ function Floorplan(props: any) {
         </div>
       </div>
 
-      <div className="relative w-full h-[72vh] rounded-xl overflow-hidden bg-[#1f1f1f] border border-white/10">
+      <div className="relative w-full h-[55vh] rounded-xl overflow-hidden bg-[#1f1f1f] border border-white/10">
         <img
           src="/floorplan.png"
           alt="Library Floorplan"
           className="absolute inset-0 w-full h-full object-contain pointer-events-none"
           draggable={false}
         />
-        {Object.entries(props.lamps).map(([key, l]: [string, any]) => (
+
+        {(props.lamps || []).map((l: any) => (
           <Lamp
             key={l.label}
             label={l.label}
-            x={l.x || "50%"} // fallback so it won't disappear
+            x={l.x || "50%"}
             y={l.y || "50%"}
             value={typeof l.value === "number" ? l.value : 0}
             onMove={handleMove}
