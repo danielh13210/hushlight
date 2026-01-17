@@ -4,6 +4,9 @@ import Sidebar from "./components/Sidebar";
 import Floorplan from "./components/Floorplan";
 import lamps from "./data/test.json";
 import { useEffect } from "react";
+import Navbar from "./components/Navbar";
+import GridLayout from "./layouts/GridLayout";
+import Log from "./components/Log";
 
 function App() {
   const url = "";
@@ -15,8 +18,12 @@ function App() {
 
   return (
     <MainLayout>
-      <Sidebar lamps={lamps} />
-      <Floorplan lamps={lamps} />
+      <Navbar />
+      <GridLayout>
+        <Floorplan lamps={lamps} />
+        <Log />
+        <Sidebar lamps={lamps} />
+      </GridLayout>
     </MainLayout>
   );
 }
