@@ -1,6 +1,5 @@
 from machine import ADC, Pin
 import time
-import config
 
 import network
 import socket
