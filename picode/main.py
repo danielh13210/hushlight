@@ -70,12 +70,13 @@ def loop():
 
         print("{:.1f}%".format(level_pct))
 
-        while True:
+        for _ in range(10):
             try:
                 requests.put(f"http://{config.server_ip}:5000/devices/update?uuid={config.uuid}&value={level_pct}")
                 break
             except OSError:
                 pass # try again
+            print("failed to send")
             time.sleep(0.5)
         if level_pct > LOUDNESS_THRESHOLD:
             print("Too loud!")
