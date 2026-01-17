@@ -7,20 +7,17 @@ import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import GridLayout from "./layouts/GridLayout";
 import Log from "./components/Log";
+import initialLamps from "./data/test.json";
+import { useState } from "react";
 
 function App() {
-  const url = "";
-  // const lamps = ["lamp1", "lamp2"];
-
-  // useEffect(() => {
-  //   fetch(url);
-  // }, []);
+  const [lamps, setLamps] = useState<any[]>(initialLamps as any[]);
 
   return (
     <MainLayout>
       <Navbar />
       <GridLayout>
-        <Floorplan lamps={lamps} />
+        <Floorplan lamps={lamps} setLamps={setLamps} />
         <Log />
         <Sidebar lamps={lamps} />
       </GridLayout>

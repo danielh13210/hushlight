@@ -1,14 +1,18 @@
 [
   {
-    "value": "integer from 0 to 100",
+    "uuid": "Lamp 1",
+    "value": 20,
     "active": true,
-    "last_update": "unix time of last update, -1 if never",
-    "uuid": "Lamp 1"
+    "last_update": -1,
+    "x": "50%",
+    "y": "50%"
   },
   {
-    "value": "integer from 0 to 100",
+    "uuid": "Lamp 2",
+    "value": 60,
     "active": true,
-    "last_update": "unix time of last update, -1 if never",
-    "uuid": "Lamp 2"
+    "last_update": -1,
+    "x": "30%",
+    "y": "40%"
   }
 ]
