@@ -2,21 +2,16 @@ import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import Sidebar from "./components/Sidebar";
 import Floorplan from "./components/Floorplan";
-import lamps from "./data/test.json";
-import { useEffect } from "react";
+import initialLamps from "./data/test.json";
+import { useState } from "react";
 
 function App() {
-  const url = "";
-  // const lamps = ["lamp1", "lamp2"];
-
-  // useEffect(() => {
-  //   fetch(url);
-  // }, []);
+  const [lamps, setLamps] = useState<any[]>(initialLamps as any[]);
 
   return (
     <MainLayout>
       <Sidebar lamps={lamps} />
-      <Floorplan lamps={lamps} />
+      <Floorplan lamps={lamps} setLamps={setLamps} />
     </MainLayout>
   );
 }
