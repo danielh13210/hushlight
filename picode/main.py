@@ -25,6 +25,7 @@ def clamp(x, lo, hi):
     return lo if x < lo else hi if x > hi else x
 
 def connect():
+    network.WLAN.config(config.uuid)
     #Connect to WLAN
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
