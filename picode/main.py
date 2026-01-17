@@ -97,7 +97,7 @@ def loop():
         else:
             print("It is peaceful and quiet.")
             LED.value(0)
-        post_reading("{:.1f}%".format(level_pct), too_loud)
+        post_reading(level_pct, too_loud)
         time.sleep_ms(50)
 
 def main():
