@@ -34,6 +34,8 @@ def update():
 		return jsonify({"error":"uuid and value required"})
 	elif uuid not in devices:
 		devices[uuid]={}
+	devices[uuid]["active"]=True
+	devices[uuid]["last_update"]=int(time.time())
 	try:
 		value=int(value)
 		if 0<=value<=100:
@@ -42,8 +44,6 @@ def update():
 			raise ValueError
 	except ValueError:
 		return jsonify({"error":"value must be an integer from 0-100"})
-	devices[uuid]["active"]=True
-	devices[uuid]["last_update"]=int(time.time())
 	return jsonify(devices[uuid])
 
 app.run(host="0.0.0.0")
