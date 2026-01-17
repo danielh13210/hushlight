@@ -18,11 +18,14 @@ if os.path.isfile(fpath):
 @app.route("/devices/list")
 def list():
 	current_time=int(time.time())
+	returned_data=[]
 	for uuid in devices:
 		if current_time-devices[uuid]["last_update"]>timeout:
 			devices[uuid]["active"]=False
-	return jsonify(devices)
-	
+		final_device=dict(devices[uuid])
+		final_device["uuid"]=uuid
+		returned_data.append(final_device)
+	return jsonify(returned_data)
 @app.route("/devices/update",methods=["PUT"])
 def update():
 	uuid=request.args.get("uuid")
