@@ -11,7 +11,25 @@ import initialLamps from "./data/test.json";
 import { useState } from "react";
 
 function App() {
-  const [lamps, setLamps] = useState<any[]>(initialLamps as any[]);
+  const [lamps, setLamps] = useState(initialLamps);
+  const url = "http://10.203.103.170:5001";
+
+  useEffect(() => {
+    const fetchLamps = async () => {
+      try {
+        const res = await fetch(`${url}/devices/list`);
+        if (!res.ok) {
+          throw new Error("Failed to get lamps!");
+        }
+        const data = await res.json();
+        setLamps(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchLamps();
+  }, []);
 
   return (
     <MainLayout>
