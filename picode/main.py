@@ -48,7 +48,7 @@ def connect():
     return ip
 
 def post_reading(level, is_loud):
-    url = f"http://{config.server_ip}:5000/devices/update"
+    url = config.server_ip + "/devices/update"
     payload = {
         "lamp_id": config.uuid,
         "level": level,
