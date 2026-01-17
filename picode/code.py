@@ -8,6 +8,7 @@ from time import sleep
 import machine
 import rp2
 import sys
+import config
 
 MIC_ADC = ADC(Pin(26))
 LED = machine.Pin(22, machine.Pin.OUT)
@@ -21,9 +22,6 @@ LOUDNESS_THRESHOLD = 45.0
 
 smoothed_level = 0.0
 
-ssid = 'OPPO'
-password = '12340000'
-
 def clamp(x, lo, hi):
     return lo if x < lo else hi if x > hi else x
 
@@ -31,7 +29,7 @@ def connect():
     #Connect to WLAN
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
-    wlan.connect(ssid, password)
+    wlan.connect(config.ssid, config.password)
     while wlan.isconnected() == False:
         if rp2.bootsel_button() == 1:
             sys.exit()
