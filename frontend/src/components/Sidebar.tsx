@@ -1,6 +1,6 @@
 function Sidebar(props: any) {
   return (
-    <div className="bg-[#2d2d2d] p-5 pt-10 col-span-8">
+    <div className="col-span-12 w-full bg-[#2d2d2d] p-5 pt-10 rounded-xl border border-white/5">
       <div className="flex flex-col gap-4">
         {Object.values(props.lamps).map((lamp: any) => (
           <div className="flex flex-col gap-4 bg-[#2f2f2f] rounded-lg p-4">
@@ -13,8 +13,17 @@ function Sidebar(props: any) {
                 {lamp.value.toFixed(1)}
               </span>
             </div>
+
             <div className="w-full bg-[#3a3a3a] rounded-full h-2">
-              <div className="bg-white h-2 rounded-full w-1/2"></div>
+              <div
+                className="bg-white h-2 rounded-full"
+                style={{
+                  width:
+                    typeof lamp.value === "number"
+                      ? `${Math.max(0, Math.min(100, lamp.value))}%`
+                      : "0%",
+                }}
+              />
             </div>
           </div>
         ))}

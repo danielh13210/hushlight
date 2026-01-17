@@ -50,14 +50,13 @@ def connect():
 def post_reading(level, is_loud):
     url = config.server_ip + "/devices/update"
     payload = {
-        "lamp_id": config.uuid,
-        "level": level,
-        "active": True,
-        "last_update": rtc.datetime()
+        "value": level,
+        "active": "True",
+        "lamp_id": config.uuid
     }
-
+    print(payload)
     try:
-        requests.post(url, json=payload, timeout=0.1) # Short timeout
+        requests.put(url, json=payload, timeout=0.1).close() # Short timeout
         print("Data sent")
     except OSError as e:
         print(f"Network error: {e}")
@@ -96,8 +95,8 @@ def loop():
             LED.toggle()
         else:
             print("It is peaceful and quiet.")
-            LED.value(0)
-        post_reading("{:.1f}%".format(level_pct), too_loud)
+            LED.value(1)
+        post_reading(level_pct, too_loud)
         time.sleep_ms(50)
 
 def main():

@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import GridLayout from "./layouts/GridLayout";
 import Log from "./components/Log";
 import initialLamps from "./data/test.json";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 function App() {
   const [lamps, setLamps] = useState(initialLamps);
@@ -32,13 +32,25 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  // Level selector state (Navbar buttons will now work)
+  const [level, setLevel] = useState<1 | 2>(1);
+
+  // If your lamps have a `level` field (1/2), this will filter.
+  // If they DON'T, it will just show all lamps (still fine).
+  const visibleLamps = useMemo(() => {
+    const hasLevelField = lamps.some((l) => l && (l.level === 1 || l.level === 2));
+    if (!hasLevelField) return lamps;
+    return lamps.filter((l) => l.level === level);
+  }, [lamps, level]);
+
   return (
     <MainLayout>
-      <Navbar />
+      <Navbar level={level} setLevel={setLevel} />
+
       <GridLayout>
-        <Floorplan lamps={lamps} setLamps={setLamps} />
+        <Floorplan lamps={visibleLamps} setLamps={setLamps} />
         <Log />
-        <Sidebar lamps={lamps} />
+        <Sidebar lamps={visibleLamps} />
       </GridLayout>
     </MainLayout>
   );
