@@ -72,7 +72,7 @@ def loop():
 
         while True:
             try:
-                requests.post(f"http://{config.server_ip}:5000/devices/update?uuid={config.uuid}&value={level_pct}")
+                requests.put(f"http://{config.server_ip}:5000/devices/update?uuid={config.uuid}&value={level_pct}")
                 break
             except OSError:
                 pass # try again
