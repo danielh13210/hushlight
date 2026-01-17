@@ -1,6 +1,5 @@
 from machine import ADC, Pin
 import time
-import config
 
 import network
 import socket
@@ -44,8 +43,9 @@ def connect():
     return ip
 
 def loop():
+    smoothed_level = 0.0
+    
     while True:
-        
         start = time.ticks_ms()
         min_val = 65535
         max_val = 0
