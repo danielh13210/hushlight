@@ -82,5 +82,6 @@ def loop():
 
 def main():
     connect()
+    loop()
     
 main()
