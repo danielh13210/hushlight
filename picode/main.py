@@ -57,7 +57,7 @@ def post_reading(level, is_loud):
     }
 
     try:
-        requests.put(url, json=payload, timeout=0.1).close() # Short timeout
+        requests.post(url, json=payload, timeout=0.1).close() # Short timeout
         print("Data sent")
     except OSError as e:
         print(f"Network error: {e}")
