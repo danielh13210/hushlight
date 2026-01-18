@@ -6,10 +6,8 @@ import Navbar from "./components/Navbar";
 import GridLayout from "./layouts/GridLayout";
 import Log from "./components/Log";
 import initialLampsRaw from "./data/test.json";
-import allLevels_ from "./data/allLevels.json";
+import allLevels from "./data/LevelList";
 import { useEffect, useMemo, useRef, useState } from "react";
-
-const allLevels=allLevels_ as const;
 
 type Lamp = {
   uuid: string;
