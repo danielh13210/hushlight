@@ -1,4 +1,5 @@
-import allLevels from "../data/LevelList"
+import allLevels_ from "../data/allLevels.json";
+const allLevels= allLevels_ as const;
 
 type Props = {
   level: typeof allLevels[number];
