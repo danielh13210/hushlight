@@ -4,7 +4,7 @@ function Sidebar(props: any) {
   return (
     <div className="col-span-12 w-full bg-[#2d2d2d] p-5 pt-10 rounded-xl border border-white/5">
       <div className="text-white text-lg font-semibold mb-4">
-        Lamps ({lamps.length})
+        Lamps on this level ({lamps.length})
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
