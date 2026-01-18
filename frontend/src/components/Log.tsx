@@ -26,7 +26,7 @@ function Log(props: { logs?: LogItem[] }) {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-white text-lg font-semibold">Logs</h2>
         <button
-          onClick={()=>{props.logs.length=0;}}
+          onClick={()=>{if(props.logs)props.logs.length=0;}}
         >
           <TrashIcon aria-label="clear logs" />
         </button>
