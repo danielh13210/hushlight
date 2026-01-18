@@ -43,3 +43,12 @@
 .octicon {
   color: gray;
 }
+
+.octicon:hover {
+  color: rgb(140,140,140);
+}
+
+.octicon:active {
+  color:rgb(120,120,120);
+}
+
