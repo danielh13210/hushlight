@@ -80,7 +80,6 @@ export default function App() {
   const loudStreakRef = useRef<Record<string, number>>({});
   const hasLoggedThisNormalEpisodeRef = useRef<Record<string, boolean>>({});
   const hasLoggedThisStreakEpisodeRef = useRef<Record<string, boolean>>({});
-  const hasLoggedThisChangeEpisodeRef = useRef<Record<string, boolean>>({});
 
   const lampsArray = useMemo(() => Object.values(lamps), [lamps]);
   const visibleLamps = useMemo(() => lampsArray.filter((l) => Number(l.level) === level), [lampsArray, level]);
@@ -125,7 +124,6 @@ export default function App() {
       const name = lamp.label ?? lamp.uuid ?? id;
       if (!isLoud) {
         hasLoggedThisStreakEpisodeRef.current[id] = false;
-        hasLoggedThisChangeEpisodeRef.current[id] = false;
         if(!hasLoggedThisNormalEpisodeRef.current[id]){
           hasLoggedThisNormalEpisodeRef.current[id] = true;
           newLogs.push({
@@ -140,17 +138,7 @@ export default function App() {
       hasLoggedThisNormalEpisodeRef.current[id] = false;
 
       const alreadyLoggedStreak = hasLoggedThisStreakEpisodeRef.current[id] ?? false;
-      const alreadyLoggedChange = hasLoggedThisChangeEpisodeRef.current[id] ?? false;
-      if(!alreadyLoggedChange){
-	
-        newLogs.push({
-          ts: nowTs(),
-          lamp: name,
-          msg: `Became LOUD (≥ ${LOUD_THRESHOLD}%) Current: ${v}%`,
-          level: "warn",
-        });
-        hasLoggedThisChangeEpisodeRef.current[id] = true;
-      } else if (!alreadyLoggedStreak && nextStreak >= LOUD_STREAK_TO_LOG) {
+      if (!alreadyLoggedStreak && nextStreak >= LOUD_STREAK_TO_LOG) {
         hasLoggedThisStreakEpisodeRef.current[id] = true;
 
         newLogs.push({
