@@ -1,3 +1,5 @@
+import {TrashIcon} from '@primer/octicons-react';
+
 type LogItem = {
   ts: string; // e.g. "12:41:09"
   lamp: string; // e.g. "Lamp 2"
@@ -23,6 +25,11 @@ function Log(props: { logs?: LogItem[] }) {
     <div className="col-span-12 lg:col-span-4 lg:row-span-2 w-full bg-[#2d2d2d] rounded-xl border border-white/5 p-5">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-white text-lg font-semibold">Logs</h2>
+        <button
+          onClick={()=>{props.logs.length=0;}}
+        >
+          <TrashIcon aria-label="clear logs" />
+        </button>
         <span className="text-white/60 text-xs">{logs.length} events</span>
       </div>
 
