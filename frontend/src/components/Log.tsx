@@ -25,14 +25,16 @@ function Log(props: { logs?: LogItem[] }) {
     <div className="col-span-12 lg:col-span-4 lg:row-span-2 w-full bg-[#2d2d2d] rounded-xl border border-white/5 p-5">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-white text-lg font-semibold">Logs</h2>
-        <button
-          onClick={()=>{if(props.logs)props.logs.length=0;}}
-        >
-          <TrashIcon aria-label="clear logs" />
-        </button>
-        <span className="text-white/60 text-xs">{logs.length} events</span>
-      </div>
-
+        <div>
+          <span className="text-white/60 text-xs">{logs.length} events</span>
+          <button
+            onClick={()=>{if(props.logs)props.logs.length=0;}}
+            title="Clear all logs"
+          >
+            <TrashIcon aria-label="clear logs" />
+          </button>
+          </div>
+        </div>
       <div className="space-y-3 max-h-[70vh] overflow-auto pr-1">
         {logs.map((l, i) => (
           <div
