@@ -25,7 +25,7 @@ function Log(props: { logs?: LogItem[] }) {
     <div className="col-span-12 lg:col-span-4 lg:row-span-2 w-full bg-[#2d2d2d] rounded-xl border border-white/5 p-5">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-white text-lg font-semibold">Logs</h2>
-        <div>
+        <div style={{display:"flex",alignItems: "center",gap:"8px"}}>
           <span className="text-white/60 text-xs">{logs.length} events</span>
           <button
             onClick={()=>{if(props.logs){
