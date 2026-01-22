@@ -28,7 +28,11 @@ function Log(props: { logs?: LogItem[] }) {
         <div>
           <span className="text-white/60 text-xs">{logs.length} events</span>
           <button
-            onClick={()=>{if(props.logs)props.logs.length=0;}}
+            onClick={()=>{if(props.logs){
+              if(confirm("Are you sure you want to clear the logs?")){
+                props.logs.length=0;
+              }
+            }}}
             title="Clear all logs"
           >
             <TrashIcon aria-label="clear logs" />
